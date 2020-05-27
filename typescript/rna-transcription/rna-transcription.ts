@@ -50,13 +50,15 @@ class Transcriptor {
       .split("")
       .map((v) => {
         const currentDNANucleotide = v as DNA_NUCLEOTIDES;
-        const hasComplimentRNANucleotide = currentDNANucleotide as DNA_NUCLEOTIDES_WITH_COMPLIMENT_RNA_NUCLEOTIDES;
 
-        return hasComplimentRNANucleotide
-          ? this.getComplementRNANucleotideFromDNANucleotide(
-              currentDNANucleotide
-            )
-          : currentDNANucleotide;
+        const hasComplimentRNANucleotide = currentDNANucleotide as DNA_NUCLEOTIDES_WITH_COMPLIMENT_RNA_NUCLEOTIDES;
+        if (hasComplimentRNANucleotide) {
+          return this.getComplementRNANucleotideFromDNANucleotide(
+            currentDNANucleotide
+          );
+        }
+
+        return currentDNANucleotide;
       })
       .join("");
   }
