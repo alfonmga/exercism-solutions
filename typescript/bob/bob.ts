@@ -6,13 +6,15 @@ const BOB_RESPONSES = {
   YELL_QUESTION: "Calm down, I know what I'm doing!",
   ADDRESS: "Fine. Be that way!",
   ELSE: "Whatever.",
-};
+} as const;
 
-type BOB_RESPONSE_TYPES = keyof typeof BOB_RESPONSES;
+type BOB_RESPONSE_TYPE = keyof typeof BOB_RESPONSES;
 
 class Bob {
-  private analyzeStr(str: string): BOB_RESPONSE_TYPES {
-    const strWithoutWhiteSpaces = str.replace(/\s/g, "");
+  private getBobResponseTypeFromPhraseAnalysis(
+    phrase: string
+  ): BOB_RESPONSE_TYPE {
+    const strWithoutWhiteSpaces = phrase.replace(/\s/g, "");
     const isStrEndingInExclamation =
       strWithoutWhiteSpaces.charAt(strWithoutWhiteSpaces.length - 1) === "!";
     const isStrEndingInQuestionMark =
@@ -34,16 +36,16 @@ class Bob {
     ) {
       return "YELL";
     }
-    if (
-      hasStrAnyEnglishAlphabetLetter &&
-      isStrYelling &&
-      isStrEndingInQuestionMark
-    ) {
-      return "YELL_QUESTION";
-    }
+
     if (isStrEndingInQuestionMark) {
-      return "QUESTION";
+      if (hasStrAnyEnglishAlphabetLetter && isStrYelling) {
+        return "YELL_QUESTION";
+      }
+      if (isStrEndingInQuestionMark) {
+        return "QUESTION";
+      }
     }
+
     if (strWithoutWhiteSpaces.length === 0) {
       return "ADDRESS";
     }
@@ -51,12 +53,8 @@ class Bob {
     return "ELSE";
   }
 
-  private getBobResponseByType(type: BOB_RESPONSE_TYPES): string {
-    return BOB_RESPONSES[type];
-  }
-
-  hey(str: string): string {
-    return this.getBobResponseByType(this.analyzeStr(str));
+  hey(phrase: string): string {
+    return BOB_RESPONSES[this.getBobResponseTypeFromPhraseAnalysis(phrase)];
   }
 }
 
