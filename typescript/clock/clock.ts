@@ -1,19 +1,52 @@
 class Clock {
-  hour: number;
-  minutes: number;
+  hour: number = 0;
+  minutes: number = 0;
+
   constructor(initialHour: number, initialMinutes?: number) {
-    this.hour = initialHour;
-    this.minutes = initialMinutes || 0;
+    this.increaseClockHours(initialHour);
+    if (initialMinutes) {
+      this.increaseClockMinutes(initialMinutes);
+    }
   }
-  plus(n: number): Clock {
+
+  increaseClockHours(hours: number) {
+    let currentHour = this.hour;
+    currentHour += hours > 24 ? currentHour / (hours * (hours / 24)) : hours;
+
+    this.hour = currentHour;
+  }
+
+  increaseClockMinutes(minutes: number) {
+    this.minutes += minutes;
+  }
+
+  plus(minutes: number): Clock {
+    this.minutes += minutes;
     return this;
   }
-  minus(n: number): Clock {
+  minus(minutes: number): Clock {
+    this.minutes += minutes;
     return this;
   }
-  equals(clock: Clock): boolean {}
+  equals(clock: Clock): boolean {
+    return this === clock;
+  }
+
+  private outputHour(): string {
+    let currentHour = this.hour;
+    if (currentHour === 24) {
+      currentHour = 0;
+    }
+
+    return currentHour >= 10 ? currentHour.toString() : `0${currentHour}`;
+  }
+
+  private outputMinutes(): string {
+    return this.minutes >= 10 ? this.minutes.toString() : `0${this.minutes}`;
+  }
+
   toString(): string {
-    return `${this.hour}:${this.minutes}`;
+    return `${this.outputHour()}:${this.outputMinutes()}`;
   }
 }
 
