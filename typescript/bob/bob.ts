@@ -12,41 +12,39 @@ type BOB_RESPONSE_TYPES = keyof typeof BOB_RESPONSES;
 
 class Bob {
   private analyzeStr(str: string): BOB_RESPONSE_TYPES {
-    const stringWithoutWhiteSpaces = str.replace(/\s/g, "");
-    const isEndingInExclamation =
-      stringWithoutWhiteSpaces.charAt(stringWithoutWhiteSpaces.length - 1) ===
-      "!";
-    const isEndingInQuestionMark =
-      stringWithoutWhiteSpaces.charAt(stringWithoutWhiteSpaces.length - 1) ===
-      "?";
-    const strStrippedNonEnglishAlphabetLetters = stringWithoutWhiteSpaces
+    const strWithoutWhiteSpaces = str.replace(/\s/g, "");
+    const isStrEndingInExclamation =
+      strWithoutWhiteSpaces.charAt(strWithoutWhiteSpaces.length - 1) === "!";
+    const isStrEndingInQuestionMark =
+      strWithoutWhiteSpaces.charAt(strWithoutWhiteSpaces.length - 1) === "?";
+    const strWithoutNonEnglishAlphabetLettersFrom = strWithoutWhiteSpaces
       .split("")
       .filter((c) => ENGLISH_ALPHABET.includes(c.toLowerCase()))
       .join("");
-    const hasAllLettersUppercase =
-      strStrippedNonEnglishAlphabetLetters.toUpperCase() ===
-      strStrippedNonEnglishAlphabetLetters;
-    const hasAnyEnglishAlphabetLetter =
-      strStrippedNonEnglishAlphabetLetters.length > 0;
+    const isStrYelling =
+      strWithoutNonEnglishAlphabetLettersFrom.toUpperCase() ===
+      strWithoutNonEnglishAlphabetLettersFrom;
+    const hasStrAnyEnglishAlphabetLetter =
+      strWithoutNonEnglishAlphabetLettersFrom.length > 0;
 
     if (
-      hasAnyEnglishAlphabetLetter &&
-      hasAllLettersUppercase &&
-      (isEndingInExclamation || !isEndingInQuestionMark)
+      hasStrAnyEnglishAlphabetLetter &&
+      isStrYelling &&
+      (isStrEndingInExclamation || !isStrEndingInQuestionMark)
     ) {
       return "YELL";
     }
     if (
-      hasAnyEnglishAlphabetLetter &&
-      hasAllLettersUppercase &&
-      isEndingInQuestionMark
+      hasStrAnyEnglishAlphabetLetter &&
+      isStrYelling &&
+      isStrEndingInQuestionMark
     ) {
       return "YELL_QUESTION";
     }
-    if (isEndingInQuestionMark) {
+    if (isStrEndingInQuestionMark) {
       return "QUESTION";
     }
-    if (stringWithoutWhiteSpaces.length === 0) {
+    if (strWithoutWhiteSpaces.length === 0) {
       return "ADDRESS";
     }
 
