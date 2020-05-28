@@ -38,7 +38,7 @@ describe("Bob", () => {
     expect(result).toEqual("Whatever.");
   });
 
-  xit("using acronyms in regular speech", () => {
+  it("using acronyms in regular speech", () => {
     const result = bob.hey("It's OK if you don't want to go to the DMV.");
     expect(result).toEqual("Whatever.");
   });
@@ -63,64 +63,64 @@ describe("Bob", () => {
     expect(result).toEqual("Sure.");
   });
 
-  xit("shouting with special characters", () => {
+  it("shouting with special characters", () => {
     const result = bob.hey("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!");
     expect(result).toEqual("Whoa, chill out!");
   });
 
-  xit("shouting with no exclamation mark", () => {
+  it("shouting with no exclamation mark", () => {
     const result = bob.hey("I HATE THE DMV");
     expect(result).toEqual("Whoa, chill out!");
   });
 
-  xit("statement containing question mark", () => {
+  it("statement containing question mark", () => {
     const result = bob.hey("Ending with ? means a question.");
     expect(result).toEqual("Whatever.");
   });
 
-  xit("prattling on", () => {
+  it("prattling on", () => {
     const result = bob.hey("Wait! Hang on.  Are you going to be OK?");
     expect(result).toEqual("Sure.");
   });
 
-  xit("silence", () => {
+  it("silence", () => {
     const result = bob.hey("");
     expect(result).toEqual("Fine. Be that way!");
   });
 
-  xit("prolonged silence", () => {
+  it("prolonged silence", () => {
     const result = bob.hey("   ");
     expect(result).toEqual("Fine. Be that way!");
   });
 
-  xit("alternate silence", () => {
+  it("alternate silence", () => {
     const result = bob.hey("\t\t\t\t\t\t\t\t\t\t");
     expect(result).toEqual("Fine. Be that way!");
   });
 
-  xit("multiple line question", () => {
+  it("multiple line question", () => {
     const result = bob.hey(
       "\nDoes this cryogenic chamber make me look fat?\nNo."
     );
     expect(result).toEqual("Whatever.");
   });
 
-  xit("starting with whitespace", () => {
+  it("starting with whitespace", () => {
     const result = bob.hey("         hmmmmmmm...");
     expect(result).toEqual("Whatever.");
   });
 
-  xit("ending with whitespace", () => {
+  it("ending with whitespace", () => {
     const result = bob.hey("Okay if like my  spacebar  quite a bit?   ");
     expect(result).toEqual("Sure.");
   });
 
-  xit("other whitespace", () => {
+  it("other whitespace", () => {
     const result = bob.hey("\n\r \t");
     expect(result).toEqual("Fine. Be that way!");
   });
 
-  xit("non-question ending with whitespace", () => {
+  it("non-question ending with whitespace", () => {
     const result = bob.hey("This is a statement ending with whitespace      ");
     expect(result).toEqual("Whatever.");
   });

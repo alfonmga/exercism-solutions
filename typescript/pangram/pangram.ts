@@ -12,7 +12,7 @@ class Pangram {
     const ENGLISH_ALPHABET_LENGTH = ENGLISH_ALPHABET.length;
 
     const SENTENCE_LETTERS_OCURRENCE_COUNT_DICT = this.sentence
-      .replace(" ", "")
+      .replace(/\s/g, "")
       .toUpperCase()
       .split("")
       .filter((c) => c.charCodeAt(0) < LAST_ASCII_CHAR_CODE)

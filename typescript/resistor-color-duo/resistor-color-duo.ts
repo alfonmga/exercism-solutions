@@ -11,17 +11,7 @@ const COLOR_CODED_BANDS = {
   white: 9,
 };
 
-type Color =
-  | "black"
-  | "brown"
-  | "red"
-  | "orange"
-  | "yellow"
-  | "green"
-  | "blue"
-  | "violet"
-  | "grey"
-  | "white";
+type Color = keyof typeof COLOR_CODED_BANDS;
 
 export class ResistorColor {
   private colors: Color[];
