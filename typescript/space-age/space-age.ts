@@ -23,6 +23,8 @@ type PLANET =
   | "NEPTUNE";
 
 class SpaceAge {
+  private readonly OUTPUT_AGE_DECIMAL_POINT_BASE = 100;
+
   seconds: number;
 
   constructor(ageInSeconds: number) {
@@ -30,7 +32,10 @@ class SpaceAge {
   }
 
   private outputAge(age: number): number {
-    return +age.toFixed(2);
+    return (
+      Math.round(age * this.OUTPUT_AGE_DECIMAL_POINT_BASE) /
+      this.OUTPUT_AGE_DECIMAL_POINT_BASE
+    );
   }
 
   private getPlanetOrbitalPeriodInEarthDays(planet: PLANET): number {
