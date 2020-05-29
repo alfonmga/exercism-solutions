@@ -1,7 +1,7 @@
 const ONE_MINUTE_IN_MS = 60 * 1000;
 
 class Clock {
-  time: Date;
+  protected readonly time: Date;
 
   constructor(initialHour: number, initialMinutes?: number) {
     this.time = new Date();
