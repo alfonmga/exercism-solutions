@@ -26,45 +26,45 @@ describe("Clock", () => {
       expect(new Clock(1, 60).toString()).toEqual("02:00");
     });
 
-    // test('minutes roll over', () => {
-    //   expect(new Clock(0, 160).toString()).toEqual('02:40')
-    // })
+    test("minutes roll over", () => {
+      expect(new Clock(0, 160).toString()).toEqual("02:40");
+    });
 
-    // test('minutes roll over continuously', () => {
-    //   expect(new Clock(0, 1723).toString()).toEqual('04:43')
-    // })
+    test("minutes roll over continuously", () => {
+      expect(new Clock(0, 1723).toString()).toEqual("04:43");
+    });
 
-    // test('hour and minutes roll over', () => {
-    //   expect(new Clock(25, 160).toString()).toEqual('03:40')
-    // })
+    test("hour and minutes roll over", () => {
+      expect(new Clock(25, 160).toString()).toEqual("03:40");
+    });
 
-    // test('hour and minutes roll over continuously', () => {
-    //   expect(new Clock(201, 3001).toString()).toEqual('11:01')
-    // })
+    test("hour and minutes roll over continuously", () => {
+      expect(new Clock(201, 3001).toString()).toEqual("11:01");
+    });
 
-    // test('hour and minutes roll over to exactly midnight', () => {
-    //   expect(new Clock(72, 8640).toString()).toEqual('00:00')
-    // })
+    test("hour and minutes roll over to exactly midnight", () => {
+      expect(new Clock(72, 8640).toString()).toEqual("00:00");
+    });
 
-    // test('negative hour', () => {
-    //   expect(new Clock(-1, 15).toString()).toEqual('23:15')
-    // })
+    test("negative hour", () => {
+      expect(new Clock(-1, 15).toString()).toEqual("23:15");
+    });
 
-    // test('negative hour rolls over', () => {
-    //   expect(new Clock(-25, 0).toString()).toEqual('23:00')
-    // })
+    test("negative hour rolls over", () => {
+      expect(new Clock(-25, 0).toString()).toEqual("23:00");
+    });
 
-    // test('negative hour rolls over continuously', () => {
-    //   expect(new Clock(-91, 0).toString()).toEqual('05:00')
-    // })
+    test("negative hour rolls over continuously", () => {
+      expect(new Clock(-91, 0).toString()).toEqual("05:00");
+    });
 
-    // test('negative minutes', () => {
-    //   expect(new Clock(1, -40).toString()).toEqual('00:20')
-    // })
+    test("negative minutes", () => {
+      expect(new Clock(1, -40).toString()).toEqual("00:20");
+    });
 
-    // test('negative minutes rolls over', () => {
-    //   expect(new Clock(1, -160).toString()).toEqual('22:20')
-    // })
+    // test("negative minutes rolls over", () => {
+    //   expect(new Clock(1, -160).toString()).toEqual("22:20");
+    // });
 
     // test('negative minutes rolls over continuously', () => {
     //   expect(new Clock(1, -4820).toString()).toEqual('16:40')
@@ -79,30 +79,30 @@ describe("Clock", () => {
     // })
 
     describe("Adding and subtracting minutes", () => {
-      // test('add minutes', () => {
-      //   expect(new Clock(10, 0).plus(3).toString()).toEqual('10:03')
-      // })
-      // test('add no minutes', () => {
-      //   expect(new Clock(6, 41).plus(0).toString()).toEqual('06:41')
-      // })
-      // test('add to next hour', () => {
-      //   expect(new Clock(0, 45).plus(40).toString()).toEqual('01:25')
-      // })
-      // test('add more than one hour', () => {
-      //   expect(new Clock(10, 0).plus(61).toString()).toEqual('11:01')
-      // })
-      // test('add more than two hours with carry', () => {
-      //   expect(new Clock(0, 45).plus(160).toString()).toEqual('03:25')
-      // })
-      // test('add across midnight', () => {
-      //   expect(new Clock(23, 59).plus(2).toString()).toEqual('00:01')
-      // })
-      // test('add more than one day (1500 min = 25 hrs)', () => {
-      //   expect(new Clock(5, 32).plus(1500).toString()).toEqual('06:32')
-      // })
-      // test('add more than two days', () => {
-      //   expect(new Clock(1, 1).plus(3500).toString()).toEqual('11:21')
-      // })
+      // test("add minutes", () => {
+      //   expect(new Clock(10, 0).plus(3).toString()).toEqual("10:03");
+      // });
+      // test("add no minutes", () => {
+      //   expect(new Clock(6, 41).plus(0).toString()).toEqual("06:41");
+      // });
+      // test("add to next hour", () => {
+      //   expect(new Clock(0, 45).plus(40).toString()).toEqual("01:25");
+      // });
+      // test("add more than one hour", () => {
+      //   expect(new Clock(10, 0).plus(61).toString()).toEqual("11:01");
+      // });
+      // test("add more than two hours with carry", () => {
+      //   expect(new Clock(0, 45).plus(160).toString()).toEqual("03:25");
+      // });
+      // test("add across midnight", () => {
+      //   expect(new Clock(23, 59).plus(2).toString()).toEqual("00:01");
+      // });
+      // test("add more than one day (1500 min = 25 hrs)", () => {
+      //   expect(new Clock(5, 32).plus(1500).toString()).toEqual("06:32");
+      // });
+      // test("add more than two days", () => {
+      //   expect(new Clock(1, 1).plus(3500).toString()).toEqual("11:21");
+      // });
       // test('subtract minutes', () => {
       //   expect(new Clock(10, 3).minus(3).toString()).toEqual('10:00')
       // })

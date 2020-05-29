@@ -1,31 +1,49 @@
 class Clock {
-  hour: number = 0;
+  hour: number;
   minutes: number = 0;
 
   constructor(initialHour: number, initialMinutes?: number) {
-    this.increaseClockHours(initialHour);
+    this.hour = initialHour;
+
     if (initialMinutes) {
-      this.increaseClockMinutes(initialMinutes);
+      this.minutes = initialMinutes;
     }
+
+    this.adjustHours();
+    this.adjustMinutes();
   }
 
-  increaseClockHours(hours: number) {
-    let currentHour = this.hour;
-    currentHour += hours > 24 ? currentHour / (hours * (hours / 24)) : hours;
+  adjustHours() {
+    if (0 < this.hour && this.hour < 25) {
+      return;
+    }
 
-    this.hour = currentHour;
+    const newHour = Math.floor(this.hour % 24);
+    this.hour = newHour < 0 ? Math.abs(24 - Math.abs(newHour)) : newHour;
   }
 
-  increaseClockMinutes(minutes: number) {
-    this.minutes += minutes;
+  adjustMinutes() {
+    if (0 < this.minutes && this.minutes < 60) {
+      return;
+    }
+
+    const extraHoursInCurrentMinutes = Math.floor(this.minutes / 60);
+    this.hour += extraHoursInCurrentMinutes % 24;
+    this.minutes = Math.round(
+      (this.minutes / 60 - extraHoursInCurrentMinutes) * 60
+    );
   }
 
   plus(minutes: number): Clock {
     this.minutes += minutes;
+    this.adjustHours();
+    this.adjustMinutes();
     return this;
   }
   minus(minutes: number): Clock {
-    this.minutes += minutes;
+    this.minutes -= minutes;
+    this.adjustHours();
+    this.adjustMinutes();
     return this;
   }
   equals(clock: Clock): boolean {
