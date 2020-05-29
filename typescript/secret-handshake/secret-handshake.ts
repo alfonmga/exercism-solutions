@@ -1,3 +1,5 @@
+const decimalNumberToBinaryUtil = (n: number) => (n >>> 0).toString(2);
+
 const SECRET_HANDSHAKE: { [key: number]: string } = {
   1: "wink",
   10: "double blink",
@@ -9,16 +11,14 @@ const SECRET_HANDSHAKE: { [key: number]: string } = {
 class HandShake {
   private binary: string;
 
-  constructor(decimalNumber: number) {
-    this.binary = (decimalNumber >>> 0).toString(2);
+  constructor(decimalN: number) {
+    this.binary = decimalNumberToBinaryUtil(decimalN);
   }
 
   commands(): string[] {
-    const binaryToNumber = Number(this.binary);
-
     const sendActions: string[] = [];
+    let gas = Number(this.binary);
 
-    let gas = binaryToNumber;
     for (const action of Object.keys(SECRET_HANDSHAKE).sort(
       (a, b) => Number(b) - Number(a)
     )) {
