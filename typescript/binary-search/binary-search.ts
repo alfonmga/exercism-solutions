@@ -14,11 +14,10 @@ export default class BinarySearch {
     return this.list;
   }
 
-  indexOf(key: number): number {
+  indexOf(searchNumber: number): number {
     if (!this.list || this.list.length === 0) {
       return -1;
     }
-    [];
 
     let left = 0;
     let right = this.list.length - 1;
@@ -27,9 +26,9 @@ export default class BinarySearch {
     while (left <= right) {
       middle = Math.floor((left + right) / 2);
 
-      if (key < this.list[middle]) {
+      if (searchNumber < this.list[middle]) {
         right = middle - 1;
-      } else if (key > this.list[middle]) {
+      } else if (searchNumber > this.list[middle]) {
         left = middle + 1;
       } else {
         return middle;
