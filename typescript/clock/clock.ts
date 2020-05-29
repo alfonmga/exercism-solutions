@@ -1,3 +1,5 @@
+const ONE_MINUTE_IN_MS = 60 * 1000;
+
 class Clock {
   time: Date;
 
@@ -7,11 +9,11 @@ class Clock {
   }
 
   plus(minutes: number): Clock {
-    this.time.setTime(this.time.getTime() + minutes * 60 * 1000);
+    this.time.setTime(this.time.getTime() + minutes * ONE_MINUTE_IN_MS);
     return this;
   }
   minus(minutes: number): Clock {
-    this.time.setTime(this.time.getTime() - minutes * 60 * 1000);
+    this.time.setTime(this.time.getTime() - minutes * ONE_MINUTE_IN_MS);
     return this;
   }
   equals(clock: Clock): boolean {
