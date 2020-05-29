@@ -19,22 +19,22 @@ class RobotName {
     this.name = this.registerNewRobotName();
   }
 
-  checkIfRobotNameIsAlreadyTaken(robotNameCandidate: string): boolean {
+  private checkIfRobotNameIsAlreadyTaken(robotNameCandidate: string): boolean {
     return this.TAKEN_ROBOT_NAMES.includes(robotNameCandidate);
   }
 
-  takeNewRobotName(newRobotName: string): void {
+  private takeNewRobotName(newRobotName: string): void {
     this.TAKEN_ROBOT_NAMES.push(newRobotName);
   }
 
-  generateRobotName(): string {
+  private generateRobotName(): string {
     return `${generateRandomStringUtil(
       2,
       this.ALLOWED_ROBOT_NAME_LETTERS
     )}${generateRandomStringUtil(3, this.ALLOWED_ROBOT_NAME_NUMBERS)}`;
   }
 
-  registerNewRobotName(): string {
+  private registerNewRobotName(): string {
     let generatedRobotName = this.generateRobotName();
 
     while (this.checkIfRobotNameIsAlreadyTaken(generatedRobotName)) {
