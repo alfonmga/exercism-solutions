@@ -1,39 +1,33 @@
-const decimalNumberToBinaryUtil = (n: number) => (n >>> 0).toString(2);
-
-const SECRET_HANDSHAKE: { [key: number]: string } = {
-  1: "wink",
-  10: "double blink",
-  100: "close your eyes",
-  1000: "jump",
-  10000: "_REVERSE_ACTIONS_",
-};
+const SECRET_HANDSHAKE_REVERSE_EVENT_BIT = 0b10000;
+const SECRET_HANDSHAKE_EVENTS_MAPPING: Map<number, string> = new Map([
+  [0b1, "wink"],
+  [0b10, "double blink"],
+  [0b100, "close your eyes"],
+  [0b1000, "jump"],
+]);
 
 class HandShake {
-  private binary: string;
+  private secret: number;
 
-  constructor(decimalN: number) {
-    this.binary = decimalNumberToBinaryUtil(decimalN);
+  constructor(secret: number) {
+    this.secret = secret;
   }
 
   commands(): string[] {
-    const sendActions: string[] = [];
-    let gas = Number(this.binary);
+    const result: string[] = [];
+    const reverse = Boolean(this.secret & SECRET_HANDSHAKE_REVERSE_EVENT_BIT);
+    for (const [bit, secretEventString] of SECRET_HANDSHAKE_EVENTS_MAPPING) {
+      if (this.secret & bit) {
+        if (reverse) {
+          result.unshift(secretEventString);
+          continue;
+        }
 
-    for (const action of Object.keys(SECRET_HANDSHAKE).sort(
-      (a, b) => Number(b) - Number(a)
-    )) {
-      if (gas >= Number(action)) {
-        gas -= Number(action);
-        sendActions.unshift(SECRET_HANDSHAKE[Number(action)]);
+        result.push(secretEventString);
       }
     }
 
-    if (sendActions.includes("_REVERSE_ACTIONS_")) {
-      sendActions.splice(sendActions.indexOf("_REVERSE_ACTIONS_"), 1);
-      sendActions.reverse();
-    }
-
-    return sendActions;
+    return result;
   }
 }
 
