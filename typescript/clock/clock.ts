@@ -1,3 +1,4 @@
+// @TODO: Refactor to use Date object
 class Clock {
   hour: number;
   minutes: number = 0;
