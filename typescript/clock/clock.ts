@@ -28,7 +28,10 @@ class Clock {
     }
 
     const extraHoursInCurrentMinutes = Math.floor(this.minutes / 60);
-    this.hour += extraHoursInCurrentMinutes % 24;
+    this.hour +=
+      (extraHoursInCurrentMinutes + 24 * (extraHoursInCurrentMinutes % 24)) %
+      24;
+
     this.minutes = Math.round(
       (this.minutes / 60 - extraHoursInCurrentMinutes) * 60
     );
