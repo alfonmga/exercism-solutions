@@ -21,11 +21,9 @@ export default class BinarySearch {
 
     let left = 0;
     let right = this.list.length - 1;
-    let middle = 0;
 
     while (left <= right) {
-      middle = Math.floor((left + right) / 2);
-
+      let middle = Math.floor((left + right) / 2);
       if (searchNumber < this.list[middle]) {
         right = middle - 1;
       } else if (searchNumber > this.list[middle]) {
