@@ -48,10 +48,16 @@ class Rational {
   }
 
   expreal(x: number): number {
-    let res = Math.round(Math.pow(x ** this.a, 1 / this.b) * 1e15) / 1e15;
-    console.debug("res", res); // @TODO: remove this
+    // @TODO: Learn more about squares roots and exponents
+    const xpown = Math.pow(x, this.a);
 
-    return res;
+    if (this.b == 2) {
+      return Math.sqrt(xpown);
+    } else if (this.b == 3) {
+      return Math.cbrt(xpown);
+    }
+
+    return Math.pow(xpown, 1.0 / this.b);
   }
 
   reduce(): Rational {
