@@ -49,6 +49,8 @@ class Rational {
 
   expreal(x: number): number {
     let res = Math.round(Math.pow(x ** this.a, 1 / this.b) * 1e15) / 1e15;
+    console.debug("res", res); // @TODO: remove this
+
     return res;
   }
 
