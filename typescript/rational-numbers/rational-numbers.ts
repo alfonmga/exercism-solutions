@@ -48,16 +48,16 @@ class Rational {
   }
 
   expreal(x: number): number {
-    // @TODO: Learn more about squares roots and exponents
-    const xpown = Math.pow(x, this.a);
+    const xpowa = Math.pow(x, this.a);
 
     if (this.b == 2) {
-      return Math.sqrt(xpown);
-    } else if (this.b == 3) {
-      return Math.cbrt(xpown);
+      return Math.sqrt(xpowa);
+    }
+    if (this.b == 3) {
+      return Math.cbrt(xpowa);
     }
 
-    return Math.pow(xpown, 1.0 / this.b);
+    return Math.pow(xpowa, 1.0 / this.b);
   }
 
   reduce(): Rational {
