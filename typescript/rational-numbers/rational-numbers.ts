@@ -54,7 +54,7 @@ class Rational {
       return Math.sqrt(xpowa);
     }
     if (this.b == 3) {
-      return Math.cbrt(xpowa);
+      return Math.cbrt(xpowa); // https://stackoverflow.com/a/26958154/3971297
     }
 
     return Math.pow(xpowa, 1.0 / this.b);
