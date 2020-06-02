@@ -1,7 +1,11 @@
 const ArgumentError = new Error("ArgumentError");
 
 class WordProblem {
-  constructor(question: string) {}
+  question: string;
+
+  constructor(question: string) {
+    this.question = question;
+  }
 
   answer(): number {
     return 1;
