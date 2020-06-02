@@ -1,3 +1,6 @@
+const A_CHAR_CODE = "a".charCodeAt(0);
+const Z_CHAR_CODE = "z".charCodeAt(0);
+
 class SimpleCipher {
   key: string;
 
@@ -7,11 +10,10 @@ class SimpleCipher {
 
   private keyGenerator(): string {
     let res = "";
-    const aCharCode = "a".charCodeAt(0);
-    const zCharCode = "z".charCodeAt(0);
     for (let i = 0; i < 100; i++) {
       res += String.fromCharCode(
-        Math.floor(Math.random() * (aCharCode - zCharCode + 1)) + zCharCode
+        Math.floor(Math.random() * (A_CHAR_CODE - Z_CHAR_CODE + 1)) +
+          Z_CHAR_CODE
       );
     }
     return res;
@@ -25,21 +27,18 @@ class SimpleCipher {
     keyLetter: string;
     action: "encode" | "decode";
   }): string {
-    const aCharCode = "a".charCodeAt(0);
-    const zCharCode = "z".charCodeAt(0);
-
-    let offset = keyLetter.charCodeAt(0) - aCharCode;
+    let offset = keyLetter.charCodeAt(0) - A_CHAR_CODE;
 
     if (action === "decode") {
       offset *= -1;
     }
 
     let charCode = inputLetter.charCodeAt(0) + offset;
-    if (charCode < aCharCode) {
-      charCode += zCharCode - aCharCode + 1;
+    if (charCode < A_CHAR_CODE) {
+      charCode += Z_CHAR_CODE - A_CHAR_CODE + 1;
     }
-    if (charCode > zCharCode) {
-      charCode -= zCharCode - aCharCode + 1;
+    if (charCode > Z_CHAR_CODE) {
+      charCode -= Z_CHAR_CODE - A_CHAR_CODE + 1;
     }
 
     return String.fromCharCode(charCode);
