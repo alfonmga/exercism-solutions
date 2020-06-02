@@ -12,15 +12,12 @@ describe("Random key generation", () => {
 
 describe("Random key cipher", () => {
   const simpleCipher = new SimpleCipher();
-
   it("has a key made of letters", () => {
     expect(simpleCipher.key).toMatch(/^[a-z]+$/);
   });
-
   it("has a key that is at least 100 characters long", () => {
     expect(simpleCipher.key.length).toBeGreaterThanOrEqual(100);
   });
-
   // Here we take advantage of the fact that plaintext of "aaa..."
   // outputs the key. This is a critical problem with shift ciphers, some
   // characters will always output the key verbatim.
@@ -29,13 +26,11 @@ describe("Random key cipher", () => {
       simpleCipher.key.substr(0, 10)
     );
   });
-
   it("can decode", () => {
     expect(simpleCipher.decode(simpleCipher.key.substr(0, 10))).toEqual(
       "aaaaaaaaaa"
     );
   });
-
   it("is reversible", () => {
     const plaintext = "abcdefghij";
     expect(simpleCipher.decode(simpleCipher.encode(plaintext))).toEqual(

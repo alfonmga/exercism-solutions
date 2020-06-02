@@ -27,13 +27,14 @@ class SimpleCipher {
     keyLetter: string;
     action: "encode" | "decode";
   }): string {
-    let offset = keyLetter.charCodeAt(0) - A_CHAR_CODE;
+    let offsetFromACharCode = keyLetter.charCodeAt(0) - A_CHAR_CODE;
 
     if (action === "decode") {
-      offset *= -1;
+      offsetFromACharCode *= -1;
     }
 
-    let charCode = inputLetter.charCodeAt(0) + offset;
+    let charCode = inputLetter.charCodeAt(0) + offsetFromACharCode;
+
     if (charCode < A_CHAR_CODE) {
       charCode += Z_CHAR_CODE - A_CHAR_CODE + 1;
     }
@@ -45,13 +46,13 @@ class SimpleCipher {
   }
 
   private convert(action: "encode" | "decode", str: string): string {
-    return Array.from(str, (inputLetter, index) =>
-      this.convertLetter({
+    return Array.from(str, (inputLetter, index) => {
+      return this.convertLetter({
         action,
         inputLetter: inputLetter,
         keyLetter: this.key[index % this.key.length],
-      })
-    ).join("");
+      });
+    }).join("");
   }
 
   encode(str: string): string {
