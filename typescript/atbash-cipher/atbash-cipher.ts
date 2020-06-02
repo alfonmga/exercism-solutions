@@ -9,7 +9,7 @@ class AtbashCipher {
     return message
       .replace(/\s/g, "")
       .replace(/\./g, "")
-      .replace(/\,/g, "")
+      .replace(/,/g, "")
       .split("")
       .map((character) => {
         const encodedCharacter = this.CIPHER[
